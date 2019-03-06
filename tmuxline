@@ -1,6 +1,7 @@
 # This tmux statusbar config was created by tmuxline.vim
 # on Tue, 05 Mar 2019
 
+wg_is_keys_off="#([ $(tmux show-option -qv key-table) = 'off' ] && echo 'SSH' || echo 'Local')" 
 set -g status-justify "left"
 set -g status "on"
 set -g status-attr "none"
@@ -23,6 +24,6 @@ setw -g window-status-activity-fg "colour144"
 setw -g window-status-separator ""
 setw -g window-status-bg "colour67"
 set -g status-left "#[fg=colour232,bg=colour144] #S #[fg=colour144,bg=colour67,nobold,nounderscore,noitalics]"
-set -g status-right "#[fg=colour16,bg=colour67,nobold,nounderscore,noitalics]#[fg=colour253,bg=colour16] %Y-%m-%d  %H:%M #[fg=colour144,bg=colour16,nobold,nounderscore,noitalics]#[fg=colour232,bg=colour144] #h "
+set -g status-right "#[fg=colour16,bg=colour67,nobold,nounderscore,noitalics]#[fg=colour253,bg=colour16] $wg_is_keys_off  %Y-%m-%d  %H:%M #[fg=colour144,bg=colour16,nobold,nounderscore,noitalics]#[fg=colour232,bg=colour144] #h "
 setw -g window-status-format "#[fg=colour253,bg=colour67] #I #[fg=colour253,bg=colour67] #W "
 setw -g window-status-current-format "#[fg=colour67,bg=colour16,nobold,nounderscore,noitalics]#[fg=colour253,bg=colour16] #I #[fg=colour253,bg=colour16] #W #[fg=colour16,bg=colour67,nobold,nounderscore,noitalics]"
