@@ -1,7 +1,7 @@
 # This tmux statusbar config was created by tmuxline.vim
 # on Tue, 05 Mar 2019
 
-wg_is_keys_off="#([ $(tmux show-option -qv key-table) = 'off' ] && echo 'SSH' || echo 'Local')" 
+wg_is_keys_off="#([ $(tmux show-option -qv key-table) = 'off' ] && echo 'ssh' || echo 'local')" 
 set -g status-justify "left"
 set -g status "on"
 set -g status-attr "none"

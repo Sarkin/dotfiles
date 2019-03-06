@@ -12,17 +12,20 @@
     {
         "shell": [
             ["mkdir -p ~/.config/nvim/", "Creating neovim config directory"]
+            ["mkdir -p ~/.tmux/", "Creating tmux config directory"]
         ]
     },
     {
         "link": {
             "~/.dotfiles": "",
             "~/.tmux.conf": "tmux.conf",
+            "~/.tmux/tmux.local.conf": "tmux.local.conf",
+            "~/.tmux/tmux.remote.conf": "tmux.remote.conf",
             "~/.config/nvim/init.vim": "init.vim",
             "~/.zshrc": "zshrc",
             "~/.zshenv": "zshenv",
             "~/.tmuxline": "tmuxline",
-            "~/.gitconfig": "gitconfig",
+            "~/.gitconfig": "gitconfig"
         }
     },
     {
