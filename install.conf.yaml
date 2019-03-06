@@ -1,0 +1,33 @@
+[
+    {
+        "defaults": {
+            "link": {
+                "relink": true
+            }
+        }
+    },
+    {
+        "clean": ["~"]
+    },
+    {
+        "shell": [
+            ["mkdir -p ~/.config/nvim/", "Creating neovim config directory"]
+        ]
+    },
+    {
+        "link": {
+            "~/.dotfiles": "",
+            "~/.tmux.conf": "tmux.conf",
+            "~/.config/nvim/init.vim": "init.vim",
+            "~/.zshrc": "zshrc",
+            "~/.zshenv": "zshenv",
+            "~/.tmuxline": "tmuxline",
+            "~/.gitconfig": "gitconfig",
+        }
+    },
+    {
+        "shell": [
+            ["git update-submodules", "Installing/updating submodules"]
+        ]
+    }
+]
