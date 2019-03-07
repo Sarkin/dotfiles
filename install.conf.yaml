@@ -19,8 +19,8 @@
         "link": {
             "~/.dotfiles": "",
             "~/.tmux.conf": "tmux.conf",
-            "~/.tmux/tmux.local.conf": "tmux.local.conf",
-            "~/.tmux/tmux.remote.conf": "tmux.remote.conf",
+            "~/.tmux/tmux.local.conf": "tmux/tmux.local.conf",
+            "~/.tmux/tmux.remote.conf": "tmux/tmux.remote.conf",
             "~/.config/nvim/init.vim": "init.vim",
             "~/.zshrc": "zshrc",
             "~/.zshenv": "zshenv",
