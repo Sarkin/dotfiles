@@ -59,7 +59,7 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 # aliases
 alias vim=nvim
 
-eval `dircolors ~/.dir_colors/dircolors`
+# eval `dircolors ~/.dir_colors/dircolors`
 
 # exports
 export TERM=screen-256color
