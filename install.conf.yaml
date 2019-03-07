@@ -11,7 +11,7 @@
     },
     {
         "shell": [
-            ["mkdir -p ~/.config/nvim/", "Creating neovim config directory"]
+            ["mkdir -p ~/.config/nvim/", "Creating neovim config directory"],
             ["mkdir -p ~/.tmux/", "Creating tmux config directory"]
         ]
     },
