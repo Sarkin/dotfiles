@@ -16,7 +16,7 @@ ZSH_TMUX_AUTOCONNECT="false"
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting dircycle web-search catimg colored-man-pages colorize copybuffer extract fancy-ctrl-z rsync zsh-dircolors-solarized tmux gitignore vi-mode)
+plugins=(dircycle web-search catimg colored-man-pages colorize copybuffer extract fancy-ctrl-z rsync tmux gitignore vi-mode)
 
 # ccat for colorized files
 # ctrl-o for copying current command
@@ -63,3 +63,7 @@ alias vim=nvim
 
 # exports
 export TERM=screen-256color
+
+# edit current command buffer with c-xe
+autoload -U edit-command-line
+bindkey '^xe' edit-command-line

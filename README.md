@@ -12,3 +12,6 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 
 Python support for neovim:
 pip3 install neovim
+
+Python formatter:
+pip install autopep8

@@ -44,7 +44,19 @@ Plug 'prabirshrestha/vim-lsp'
 " Alignment
 Plug 'junegunn/vim-easy-align'
 
+" Header switch
+Plug 'derekwyatt/vim-fswitch'
+
+" Code formatting
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plug 'google/vim-glaive'
+
 call plug#end()
+
+call glaive#Install()
 
 filetype on
 filetype plugin on
@@ -63,6 +75,8 @@ set splitright
 set splitbelow
 set nohlsearch
 set hidden
+set exrc
+set secure
 
 colorscheme gruvbox
 set background=dark
@@ -90,7 +104,7 @@ nmap <silent> <leader>ve :e $MYVIMRC<CR>
 nmap <silent> <leader>vs :so $MYVIMRC<CR>
 
 " Mapping for closing buffer 
-map <leader>bc b:bp<bar>sp<bar>bn<bar>bd<CR>
+map <leader>bc :bp<bar>sp<bar>bn<bar>bd<CR>
 
 " General navigation
 map <c-j> j<c-e>
@@ -132,6 +146,7 @@ nnoremap <silent> <Leader>os :FSSplitRight<cr>
 nnoremap <C-n> :NERDTreeToggle<CR>
 
 " lsp-vim mappings
+nnoremap <Leader>sd :LspDeclaration<cr>
 nnoremap <Leader>sf :LspDefinition<cr>
 nnoremap <Leader>sr :LspReferences<cr>
 nnoremap <Leader>st :LspTypeDefinition<cr>
@@ -144,6 +159,9 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" Enable codefmt's default mappings on the <Leader>= prefix.
+Glaive codefmt plugin[mappings]
+
 " Other plugin configs
 "
 " NERDCommenter
@@ -154,7 +172,14 @@ let g:NERDCompactSexyComs = 1
 let g:ctrlp_map = '<c-f>'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_switch_buffer = 'et'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_regexp = 1
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" let g:ctrlp_user_command = ['.svn', 'cd %s && svn ls -R']
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif 
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -165,21 +190,29 @@ let g:airline#extensions#obsession#enabled = 1
 " airline
 set laststatus=2
 set timeoutlen=500
-let g:airline_theme='molokai'
+let g:airline_theme='sol'
 let g:airline_powerline_fonts = 1
 
 " ycm
 let g:ycm_always_populate_location_list = 1
 
-" Registering cquery for vim-lsp
+" Registering cquery and pyls for vim-lsp
 if executable('cquery')
  au User lsp_setup call lsp#register_server({
     \ 'name': 'cquery',
-    \ 'cmd': {server_info->['cquery']},
+    \ 'cmd': {server_info->['cquery', '--log-file=/tmp/cq.log', '--record=/tmp/cquery']},
     \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-    \ 'initialization_options': { 'cacheDirectory': '/home/' . $USER . '.cache/cquery' },
+    \ 'initialization_options': { 'cacheDirectory': $HOME . '/.cache/cquery' },
     \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
     \ })
+endif
+
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
 endif
 
 let g:lsp_diagnostics_enabled = 0     " disable diagnostics support
