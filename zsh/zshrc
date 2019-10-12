@@ -60,6 +60,9 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 
 # aliases
 alias vim=nvim
+alias revi='svn revert --depth=infinity'
+alias agrep='ya grep -m=0 --remote'
+
 
 # eval `dircolors ~/.dir_colors/dircolors`
 
@@ -69,3 +72,5 @@ export TERM=screen-256color
 # edit current command buffer with c-xe
 autoload -U edit-command-line
 bindkey '^xe' edit-command-line
+
+source /home/kinan-sarmini/venvs/default/bin/activate
