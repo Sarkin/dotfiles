@@ -41,6 +41,8 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'tpope/vim-tbone'
+
 Plug $HOME . '/arcadia/junk/vvgolubev/vim-archer'
 
 call plug#end()
@@ -65,7 +67,7 @@ set nohlsearch
 set hidden
 set exrc
 set secure
-
+set shellcmdflag=-ic
 
 " Colorschemes
 
@@ -95,8 +97,8 @@ set backspace=indent,eol,start
 let mapleader=","
 
 " Convenient vimrc editing
-nmap <silent> <leader>ve :e $MYVIMRC<CR>
-nmap <silent> <leader>vs :so $MYVIMRC<CR>
+nn <silent> <leader>ve :e $MYVIMRC<CR>
+nn <silent> <leader>vs :so $MYVIMRC<CR>
 
 " Repeatedly hit <c-o> until the file changes
 function! GoBackToRecentBuffer()
@@ -173,7 +175,7 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+nn ga <Plug>(EasyAlign)
 
 " Other plugin configs
 "
@@ -203,7 +205,7 @@ let g:airline#extensions#obsession#enabled = 1
 " airline
 set laststatus=2
 set timeoutlen=500
-let g:airline_theme='angr'
+let g:airline_theme='sol'
 let g:airline_powerline_fonts = 1
 
 nnoremap <leader>ab :ArcBlame<cr>
@@ -211,6 +213,10 @@ nnoremap <leader>ad :ArcDiff<cr>
 nnoremap <leader>adc :ArcDiffCached<cr>
 nnoremap <leader>al :ArcLog<cr>
 nnoremap <leader>as :ArcShow<cr>
+
+" Yanking to tmux buffer
+xn ty :Tyank<cr>:!lp<cr>
+xn tp :Tput<cr>
 
 " Coc configs
 
@@ -236,19 +242,19 @@ nn <silent> <leader>fv :call CocLocations('ccls','$ccls/vars')<cr>
 nn <silent> <leader>fV :call CocLocations('ccls','$ccls/vars',{'kind':1})<cr>
 
 " Remap keys for gotos
-nmap <silent> <leader>gf <Plug>(coc-definition)
-nmap <silent> <leader>gd <Plug>(coc-declaration)
-nmap <silent> <leader>gt <Plug>(coc-type-definition)
-nmap <silent> <leader>gi <Plug>(coc-implementation)
-nmap <silent> <leader>fr <Plug>(coc-references)
-nmap <silent> <leader>gs :call CocAction('showSignatureHelp')<cr>
-nmap <silent> <leader>fa :<C-u>CocList -I -S -R symbols<cr>
-nmap <silent> <leader>fs :call CocAction('documentSymbols')<cr>
+nn <silent> <leader>gf <Plug>(coc-definition)
+nn <silent> <leader>gd <Plug>(coc-declaration)
+nn <silent> <leader>gt <Plug>(coc-type-definition)
+nn <silent> <leader>gi <Plug>(coc-implementation)
+nn <silent> <leader>fr <Plug>(coc-references)
+nn <silent> <leader>gs :call CocAction('showSignatureHelp')<cr>
+nn <silent> <leader>fa :<C-u>CocList -I -S -R symbols<cr>
+nn <silent> <leader>fs :call CocAction('documentSymbols')<cr>
 
 nn <silent><C-p> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<cr>
 
 " Remap for rename current word
-nmap <leader>mv <Plug>(coc-rename)
+nn <leader>mv <Plug>(coc-rename)
 
 nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
 
@@ -322,20 +328,20 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
+xn if <Plug>(coc-funcobj-i)
+xn af <Plug>(coc-funcobj-a)
+onor if <Plug>(coc-funcobj-i)
+onor af <Plug>(coc-funcobj-a)
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nn <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+nn <leader>qf  <Plug>(coc-fix-current)
 
 
 " Remap for format selected region
-xmap <leader>=  <Plug>(coc-format-selected)
-nmap <leader>=  <Plug>(coc-format-selected)
+xn <leader>=  <Plug>(coc-format-selected)
+nn <leader>=  <Plug>(coc-format-selected)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
