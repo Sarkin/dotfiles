@@ -19,6 +19,8 @@
             "~/.dotfiles": "",
             "~/.tmux.conf": "tmux/tmux.conf",
             "~/.config/nvim/init.vim": "vim/init.vim",
+            "~/.config/nvim/coc.vim": "vim/coc.vim",
+            "~/.config/nvim/autoload/common.vim": "vim/common.vim",
             "~/.config/nvim/yandex.vim": "vim/yandex.vim",
             "~/.zshrc": "zsh/zshrc",
             "~/.zshenv": "zsh/zshenv",
