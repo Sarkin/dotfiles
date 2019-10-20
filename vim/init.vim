@@ -41,6 +41,8 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'tpope/vim-tbone'
+
 Plug $HOME . '/arcadia/junk/vvgolubev/vim-archer'
 
 call plug#end()
@@ -65,6 +67,7 @@ set nohlsearch
 set hidden
 set exrc
 set secure
+set shellcmdflag=-ic
 
 " Colorschemes
 
@@ -91,8 +94,8 @@ set backspace=indent,eol,start
 let mapleader=","
 
 " Convenient vimrc editing
-nmap <silent> <leader>ve :e $MYVIMRC<CR>
-nmap <silent> <leader>vs :so $MYVIMRC<CR>
+nn <silent> <leader>ve :e $MYVIMRC<CR>
+nn <silent> <leader>vs :so $MYVIMRC<CR>
 
 " General navigation
 map <c-j> j<c-e>
@@ -140,6 +143,10 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Yanking to tmux buffer
+xn <silent> ty :Tyank<cr>:!lp<cr><cr>
+xn <silent> tp :Tput<cr>
 
 " Other plugin configs
 "
