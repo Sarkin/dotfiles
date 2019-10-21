@@ -11,7 +11,7 @@
     },
     {
         "shell": [
-            ["mkdir -p ~/.config/nvim/", "Creating neovim config directory"]
+            ["mkdir -p ~/.config/nvim/autoload", "Creating neovim config directory"]
         ]
     },
     {
@@ -20,8 +20,8 @@
             "~/.tmux.conf": "tmux/tmux.conf",
             "~/.config/nvim/init.vim": "vim/init.vim",
             "~/.config/nvim/coc.vim": "vim/coc.vim",
+            "~/.config/nvim/coc-settings.json": "vim/coc-settings.json",
             "~/.config/nvim/autoload/common.vim": "vim/common.vim",
-            "~/.config/nvim/yandex.vim": "vim/yandex.vim",
             "~/.zshrc": "zsh/zshrc",
             "~/.zshenv": "zsh/zshenv",
             "~/.gitconfig": "gitconfig",
