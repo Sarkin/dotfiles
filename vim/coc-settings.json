@@ -1,0 +1,68 @@
+{
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "cuda",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/home/kinan-sarmini/.ccls-cache"
+                },
+                "index": {
+                    "initialBlackList": [
+                        ".pb.h",
+                        ".pb.cc"
+                    ]
+                }
+            },
+        },
+        "lua": {
+            "command": "lua-lsp",
+            "filetypes": [
+                "lua"
+            ]
+        },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod"
+            ],
+            "filetypes": [
+                "go"
+            ]
+        },
+        "clojure-lsp": {
+            "command": "bash",
+            "args": [
+                "-c",
+                "clojure-lsp"
+            ],
+            "filetypes": [
+                "clojure"
+            ],
+            "rootPatterns": [
+                "project.clj"
+            ],
+            "additionalSchemes": [
+                "jar",
+                "zipfile"
+            ],
+            "trace.server": "verbose",
+            "initializationOptions": {}
+        }
+    },
+    "python.formatting.provider": "yapf",
+    "yank.highlight.enable": false
+}
