@@ -25,7 +25,9 @@
             "~/.zshrc": "zsh/zshrc",
             "~/.zshenv": "zsh/zshenv",
             "~/.gitconfig": "gitconfig",
-            "~/.tmux": "tmux/tmux"
+            "~/.tmux": "tmux/tmux",
+            "~/.config/compton.config": "compton/compton.config",
+            "~/.config/awesome": "awesome"
         }
     },
     {
