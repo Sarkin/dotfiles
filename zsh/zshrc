@@ -59,11 +59,13 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 
 # aliases
 alias vim=nvim
-alias revi='svn revert --depth=infinity'
 alias agrep='ya grep -m=0 --remote'
 
 
-eval `dircolors ~/.dir_colors/dircolors`
+
+if [[ -z "$SSH_CLIENT" ]]; then
+    eval `dircolors ~/.dir_colors/dircolors`
+fi
 
 # exports
 export TERM=screen-256color
@@ -76,3 +78,6 @@ source $HOME/venvs/default/bin/activate
 
 # The next line updates PATH for Yandex Cloud CLI.
 if [ -f '$HOME/yandex-cloud/path.bash.inc' ]; then source '$HOME/yandex-cloud/path.bash.inc'; fi
+
+# [[ -S "$HOME/.ssh/auth_sock" ]] && export SSH_AUTH_SOCK="$HOME/.ssh/auth_sock"
+# eval `keychain -q --eval --agents ssh id_rsa`
