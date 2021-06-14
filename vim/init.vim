@@ -193,7 +193,7 @@ set timeoutlen=500
 " let g:airline_theme='seagull'
 " let g:airline_theme='sol'
 " let g:airline_theme='silver'
-let g:airline_theme = 'alduin'
+let g:airline_theme = 'sol'
 let g:airline_powerline_fonts = 1
 
 execute "source " . $HOME . "/.config/nvim/coc.vim"
