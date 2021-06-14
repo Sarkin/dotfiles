@@ -27,7 +27,8 @@
             "~/.gitconfig": "gitconfig",
             "~/.tmux": "tmux/tmux",
             "~/.config/compton.config": "compton/compton.config",
-            "~/.config/awesome": "awesome"
+            "~/.config/awesome": "awesome",
+            "~/.config/alacritty": "alacritty"
         }
     },
     {
