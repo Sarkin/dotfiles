@@ -72,11 +72,7 @@ export TERM=screen-256color
 autoload -U edit-command-line
 bindkey '^xe' edit-command-line
 
-source /home/kinan-sarmini/venvs/default/bin/activate
+source $HOME/venvs/default/bin/activate
 
 # The next line updates PATH for Yandex Cloud CLI.
-if [ -f '/home/kinan-sarmini/yandex-cloud/path.bash.inc' ]; then source '/home/kinan-sarmini/yandex-cloud/path.bash.inc'; fi
-
-[[ -S "$HOME/.ssh/auth_sock" ]] && export SSH_AUTH_SOCK="$HOME/.ssh/auth_sock"
-
-eval `keychain -q --eval --agents ssh id_rsa`
+if [ -f '$HOME/yandex-cloud/path.bash.inc' ]; then source '$HOME/yandex-cloud/path.bash.inc'; fi
