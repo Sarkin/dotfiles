@@ -3,7 +3,7 @@ tmux, git, curl, wget, zsh, oh-my-zsh, pip3, nodejs, npm
 
 ```
 sudo apt-get update
-sudo apt-get install tmux curl git wget zsh python3-pip nodejs npm
+sudo apt-get install tmux curl git wget zsh python3-pip nodejs npm xsel
 
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
