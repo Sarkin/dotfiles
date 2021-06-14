@@ -22,11 +22,12 @@
                 },
                 "index": {
                     "initialBlackList": [
+                        ".*",
                         ".pb.h",
                         ".pb.cc"
                     ]
                 }
-            },
+            }
         },
         "lua": {
             "command": "lua-lsp",
@@ -64,5 +65,9 @@
         }
     },
     "python.formatting.provider": "yapf",
-    "yank.highlight.enable": false
+    "python.autoComplete.extraPaths": ["/home/kinan/sarmini/arcadia"],
+    "python.venvFolders": ["venvs"],
+    "python.pythonPath": "/home/kinan-sarmini/venvs/default/bin/python",
+    "yank.highlight.enable": false,
+    "coc.preferences.rootPatterns": [".git", ".hg", ".projections.json", ".arc"]
 }

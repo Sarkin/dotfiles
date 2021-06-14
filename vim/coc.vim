@@ -20,12 +20,14 @@ nn <silent> <leader>fmt :call CocLocations('ccls','$ccls/member',{'kind':2})<cr>
 nn <silent> <leader>fv :call CocLocations('ccls','$ccls/vars')<cr>
 nn <silent> <leader>fV :call CocLocations('ccls','$ccls/vars',{'kind':1})<cr>
 
+nn <silent> <leader>fw :call CocLocations('ccls','textDocument/references',{'role':16})<cr>
+nn <silent> <leader>fr :call CocLocations('ccls','textDocument/references',{'role':8})<cr>
 " Remap keys for gotos
 nmap <silent> <leader>gf <Plug>(coc-definition)
 nmap <silent> <leader>gd <Plug>(coc-declaration)
 nmap <silent> <leader>gt <Plug>(coc-type-definition)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
-nmap <silent> <leader>fr <Plug>(coc-references)
+nmap <silent> <leader>ff <Plug>(coc-references)
 nmap <silent> <leader>gs :call CocAction('showSignatureHelp')<cr>
 nmap <silent> <leader>fa :<C-u>CocList -I -S -R symbols<cr>
 nmap <silent> <leader>fs :call CocAction('documentSymbols')<cr>

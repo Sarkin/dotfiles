@@ -43,6 +43,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'tpope/vim-tbone'
 
+Plug 'dracula/vim', { 'as': 'dracula' }
+
 Plug $HOME . '/arcadia/junk/vvgolubev/vim-archer'
 
 call plug#end()
@@ -55,6 +57,14 @@ filetype indent on
 " General settings
 syntax on
 set nu
+set rnu
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 set incsearch
 set wildignore=*.o,*.obj,*.bak,*.exe,*.swp,*.so,*.zip
 set nofoldenable
@@ -76,8 +86,10 @@ set shellcmdflag=-ic
 
 " colorscheme challenger_deep
 
-let g:rehash256=1
-colorscheme molokai
+" let g:rehash256=1
+" colorscheme molokai
+
+colorscheme dracula
 
 " Indentation and tabulation
 set tabstop=4
@@ -137,6 +149,7 @@ nnoremap <silent> <Leader>os :FSSplitRight<cr>
 
 " NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
+map <leader>r :NERDTreeFind<cr>
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -187,3 +200,18 @@ let dev_env=($SSH_CLIENT != 0)
 if dev_env
   execute "source " . $HOME . "/.config/nvim/dev.vim"
 endif
+
+augroup Binary
+  au!
+  au BufReadPre  *.bin let &bin=1
+  au BufReadPost *.bin if &bin | %!xxd
+  au BufReadPost *.bin set ft=xxd | endif
+  au BufWritePre *.bin if &bin | %!xxd -r
+  au BufWritePre *.bin endif
+  au BufWritePost *.bin if &bin | %!xxd
+  au BufWritePost *.bin set nomod | endif
+augroup END
+
+au BufEnter *.I setlocal filetype=cpp
+au BufEnter *.I let b:fswitchdst='C,cpp' | let b:fswitchlocs='./'
+au BufEnter *.C let b:fswitchdst='H,I,hpp,h'
