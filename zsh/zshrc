@@ -26,8 +26,7 @@ plugins=(dircycle web-search catimg colored-man-pages colorize copybuffer extrac
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-
+#
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
@@ -64,7 +63,7 @@ alias revi='svn revert --depth=infinity'
 alias agrep='ya grep -m=0 --remote'
 
 
-# eval `dircolors ~/.dir_colors/dircolors`
+eval `dircolors ~/.dir_colors/dircolors`
 
 # exports
 export TERM=screen-256color
@@ -74,3 +73,7 @@ autoload -U edit-command-line
 bindkey '^xe' edit-command-line
 
 source /home/kinan-sarmini/venvs/default/bin/activate
+
+[[ -S "$HOME/.ssh/auth_sock" ]] && export SSH_AUTH_SOCK="$HOME/.ssh/auth_sock"
+
+eval `keychain -q --eval --agents ssh id_rsa`
