@@ -39,13 +39,15 @@ Plug 'derekwyatt/vim-fswitch'
 
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'tpope/vim-tbone'
 
 Plug 'dracula/vim', { 'as': 'dracula' }
 
 Plug $HOME . '/arcadia/junk/vvgolubev/vim-archer'
+
+Plug 'ojroques/vim-oscyank', { 'branch': 'main' }
 
 call plug#end()
 
