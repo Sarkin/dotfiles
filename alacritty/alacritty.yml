@@ -51,3 +51,5 @@ colors:
     magenta: '0xff46b0'
     cyan:    '0x59dffc'
     white:   '0xe6e6d1'
+
+dynamic_padding: true

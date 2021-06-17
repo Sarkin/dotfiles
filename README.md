@@ -1,4 +1,5 @@
 # Prerequisites:
+Change default shell to zsh after installation (both local and remote).
 tmux, git, curl, wget, zsh, oh-my-zsh, pip3, nodejs, npm
 
 ```
@@ -24,3 +25,7 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 
 ### coc.nvim
 Extensions: coc-json, coc-python, coc-snippets, coc-lists
+
+
+
+https://github.com/ibraheemdev/modern-unix
