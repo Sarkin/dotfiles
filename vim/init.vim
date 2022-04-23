@@ -1,7 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Git helper
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/virm-fugitive'
 
 " Show changed line
 Plug 'airblade/vim-gitgutter'
@@ -39,7 +39,7 @@ Plug 'derekwyatt/vim-fswitch'
 
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
 Plug 'tpope/vim-tbone'
 
@@ -48,6 +48,16 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug $HOME . '/arcadia/junk/vvgolubev/vim-archer'
 
 Plug 'ojroques/vim-oscyank', { 'branch': 'main' }
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'm-pilia/vim-ccls'
+
+
+Plug 'liuchengxu/vista.vim'
+
 
 call plug#end()
 
@@ -88,10 +98,10 @@ set shellcmdflag=-ic
 
 " colorscheme challenger_deep
 
-" let g:rehash256=1
-" colorscheme molokai
+let g:rehash256=1
+colorscheme molokai
 
-colorscheme dracula
+" colorscheme dracula
 
 " Indentation and tabulation
 set tabstop=4
@@ -185,7 +195,8 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#fnamecollapse = 0
-let g:airline#extensions#obsession#enabled = 1
+" let g:airline#extensions#obsession#enabled = 1
+let g:airline#extensions#vista#enabled = 1
 
 " airline
 set laststatus=2
@@ -220,3 +231,28 @@ augroup END
 au BufEnter *.I setlocal filetype=cpp
 au BufEnter *.I let b:fswitchdst='C,cpp' | let b:fswitchlocs='./'
 au BufEnter *.C let b:fswitchdst='H,I,hpp,h'
+
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    select = {
+      enable = true,
+
+      -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true,
+
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+  },
+}
+EOF
+
+let g:vista_default_executive = 'coc'
+nnoremap <c-v> :Vista!!<cr>

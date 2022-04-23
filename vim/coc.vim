@@ -34,6 +34,8 @@ nmap <silent> <leader>fs :call CocAction('documentSymbols')<cr>
 
 nn <silent><C-p> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<cr>
 
+nmap <silent> <leader>cr :call CocNotify('ccls', 'workspace/didChangeConfiguration')<cr>
+
 " Remap for rename current word
 nmap <leader>mv <Plug>(coc-rename)
 
