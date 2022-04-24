@@ -53,3 +53,6 @@ colors:
     white:   '0xe6e6d1'
 
 dynamic_padding: true
+
+font:
+    size: 8

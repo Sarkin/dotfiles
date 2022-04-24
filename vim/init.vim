@@ -39,7 +39,7 @@ Plug 'derekwyatt/vim-fswitch'
 
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'tpope/vim-tbone'
 
