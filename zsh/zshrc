@@ -10,7 +10,7 @@ DISABLE_AUTO_TITLE="true"
 
 # tmux plugin
 ZSH_TMUX_AUTOSTART="true"
-ZSH_TMUX_AUTOCONNECT="true"
+ZSH_TMUX_AUTOCONNECT="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"

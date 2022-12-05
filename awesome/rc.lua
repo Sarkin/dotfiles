@@ -87,7 +87,7 @@ local themes = {
     "vertex",          -- 10
 }
 
-local chosen_theme = themes[6]
+local chosen_theme = themes[7]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "alacritty"
@@ -506,7 +506,7 @@ globalkeys = my_table.join(
               -- {description = "lua execute prompt", group = "awesome"})
     -- --]]
 
-    awful.key({ altkey, }, "Shift_L", function () kbdcfg.switch() end)
+    awful.key({ modkey, }, "Shift_L", function () kbdcfg.switch() end)
 )
 
 clientkeys = my_table.join(

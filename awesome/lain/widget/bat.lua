@@ -38,7 +38,13 @@ local function factory(args)
 
     function bat.get_batteries()
         helpers.line_callback("ls -1 " .. pspath, function(line)
-            local bstr =  string.match(line, "BAT%w+")
+            local bstr = string.match(line, "BAT%w+")
+            local astr = string.match(line, "A%w+")
+
+            if (not bstr) and (not astr) then
+                return
+            end
+
             if bstr then
                 batteries[#batteries + 1] = bstr
             else
@@ -190,19 +196,22 @@ local function factory(args)
                 if tonumber(bat_now.perc) <= n_perc[1] then
                     bat.id = naughty.notify({
                         preset = bat_notification_critical_preset,
-                        replaces_id = bat.id
+                        replaces_id = bat.id,
+                        timeout = 3
                     }).id
                 elseif tonumber(bat_now.perc) <= n_perc[2] then
                     bat.id = naughty.notify({
                         preset = bat_notification_low_preset,
-                        replaces_id = bat.id
+                        replaces_id = bat.id,
+                        timeout = 3
                     }).id
                 end
                 fullnotification = false
             elseif bat_now.status == "Full" and full_notify == "on" and not fullnotification then
                 bat.id = naughty.notify({
                     preset = bat_notification_charged_preset,
-                    replaces_id = bat.id
+                    replaces_id = bat.id,
+                    timeout = 3
                 }).id
                 fullnotification = true
             end
