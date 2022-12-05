@@ -57,7 +57,7 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "compton --config /home/kinan-sarmini/.config/compton.config", "chromium", "Telegram" })
+run_once({ "compton --config /home/kinan-sarmini/.config/compton.config", "chromium", "telegram-desktop" })
 run_once({ "todoist" })
 
 -- This function implements the XDG autostart specification
@@ -95,7 +95,7 @@ local editor       = os.getenv("EDITOR") or "vim"
 local browser      = "chromium"
 local guieditor    = "gedit"
 local scrlocker    = "dm-tool lock"
-local chat         = "Telegram"
+local chat         = "telegram-desktop"
 local todo         = "todoist"
 local file_browser = "nautilus"
 
