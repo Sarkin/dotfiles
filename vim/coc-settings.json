@@ -1,37 +1,5 @@
 {
     "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "cuda",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/home/kinan-sarmini/ccls"
-                },
-                "index": {
-                    "initialBlackList": [
-                        ".",
-                        ".*",
-                        ".pb.h",
-                        ".pb.cc",
-                        ".*contrib.*"
-                    ]
-                },
-                "highlight": { "lsRanges" : true }
-            }
-        },
         "lua": {
             "command": "lua-lsp",
             "filetypes": [
@@ -85,11 +53,19 @@
             }
         }
     },
+    "semanticTokens.enable": true,
+    "inlayHint.enable": false,
     "python.formatting.provider": "yapf",
     "python.autoComplete.extraPaths": ["/home/kinan/sarmini/arcadia"],
     "python.venvFolders": ["venvs"],
     "python.pythonPath": "/home/kinan-sarmini/venvs/default/bin/python",
     "python.autoComplete.extraPaths": ["/home/kinan-sarmini/rarc/arcadia/yabs/server/test"],
     "yank.highlight.enable": false,
-    "coc.preferences.rootPatterns": [".git", ".hg", ".projections.json", ".arc"]
+    "coc.preferences.rootPatterns": [
+      ".git",
+      ".hg",
+      ".projections.json",
+      ".arc"
+    ],
+    "snippets.ultisnips.pythonPrompt": false
 }
