@@ -57,7 +57,8 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "compton --config /home/kinan-sarmini/.config/compton.config", "firefox", "Telegram" })
+run_once({ "compton --config /home/kinan-sarmini/.config/compton.config", "chromium", "telegram-desktop" })
+run_once({ "todoist" })
 
 -- This function implements the XDG autostart specification
 --[[
@@ -86,19 +87,20 @@ local themes = {
     "vertex",          -- 10
 }
 
-local chosen_theme = themes[6]
+local chosen_theme = themes[7]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "alacritty"
 local editor       = os.getenv("EDITOR") or "vim"
-local browser      = "firefox"
+local browser      = "chromium"
 local guieditor    = "gedit"
 local scrlocker    = "dm-tool lock"
-local chat         = "Telegram"
+local chat         = "telegram-desktop"
+local todo         = "todoist"
 local file_browser = "nautilus"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "Terminal", "Browser", "Telegram", "Files" }
+awful.util.tagnames = { "Terminal", "Browser", "Telegram", "Todo", "Files" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -251,6 +253,16 @@ root.buttons(my_table.join(
     awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
+
+kbdcfg = {}
+kbdcfg.cmd = "setxkbmap"
+kbdcfg.layout = { { "us", "" }, { "ru,us", "phonetic" } }
+kbdcfg.current = 1
+kbdcfg.switch = function ()
+  kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+  local t = kbdcfg.layout[kbdcfg.current]
+  os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
+end
 
 -- {{{ Key bindings
 globalkeys = my_table.join(
@@ -480,7 +492,7 @@ globalkeys = my_table.join(
     --]]
     -- Prompt
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"})
+              {description = "run prompt", group = "launcher"}),
 
     -- awful.key({ modkey }, "x",
               -- function ()
@@ -493,6 +505,8 @@ globalkeys = my_table.join(
               -- end,
               -- {description = "lua execute prompt", group = "awesome"})
     -- --]]
+
+    awful.key({ modkey, }, "Shift_L", function () kbdcfg.switch() end)
 )
 
 clientkeys = my_table.join(
@@ -632,13 +646,16 @@ awful.rules.rules = {
       properties = { titlebars_enabled = false } },
 
     -- Set Firefox to always map on the first tag on screen 2.
-    { rule = { class = "Firefox" },
+    { rule = { class = "Chromium" },
       properties = { tag = awful.util.tagnames[2] } },
 
     { rule = { class = "Telegram" },
       properties = { tag = awful.util.tagnames[3] } },
 
     { rule = { class = "Nautilus" },
+      properties = { tag = awful.util.tagnames[4] } },
+
+    { rule = { class = "Todoist" },
       properties = { tag = awful.util.tagnames[4] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
