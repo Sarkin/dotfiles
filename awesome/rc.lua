@@ -59,6 +59,7 @@ end
 
 run_once({ "compton --config /home/kinan-sarmini/.config/compton.config", "chromium", "telegram-desktop" })
 run_once({ "todoist" })
+run_once({ "obsidian" })
 
 -- This function implements the XDG autostart specification
 --[[
@@ -97,10 +98,11 @@ local guieditor    = "gedit"
 local scrlocker    = "dm-tool lock"
 local chat         = "telegram-desktop"
 local todo         = "todoist"
+local obsidian     = "obsidian"
 local file_browser = "nautilus"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "Terminal", "Browser", "Telegram", "Todo", "Files" }
+awful.util.tagnames = { "Terminal", "Browser", "Telegram", "Todo", "Obsidian", "Files" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -393,10 +395,10 @@ globalkeys = my_table.join(
     -- awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               -- {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ altkey, "Shift"   }, "l",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master width factor", group = "layout"}),
-    awful.key({ altkey, "Shift"   }, "h",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master width factor", group = "layout"}),
+    -- awful.key({ altkey, "Shift"   }, "l",     function () awful.tag.incmwfact( 0.05)          end,
+              -- {description = "increase master width factor", group = "layout"}),
+    -- awful.key({ altkey, "Shift"   }, "h",     function () awful.tag.incmwfact(-0.05)          end,
+              -- {description = "decrease master width factor", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
@@ -425,13 +427,13 @@ globalkeys = my_table.join(
     awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end,
               {description = "dropdown application", group = "launcher"}),
 
-    -- Widgets popups
-    awful.key({ altkey, }, "c", function () if beautiful.cal then beautiful.cal.show(7) end end,
-              {description = "show calendar", group = "widgets"}),
-    awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end,
-              {description = "show filesystem", group = "widgets"}),
-    awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end,
-              {description = "show weather", group = "widgets"}),
+    -- -- Widgets popups
+    -- awful.key({ altkey, }, "c", function () if beautiful.cal then beautiful.cal.show(7) end end,
+              -- {description = "show calendar", group = "widgets"}),
+    -- awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end,
+              -- {description = "show filesystem", group = "widgets"}),
+    -- awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end,
+              -- {description = "show weather", group = "widgets"}),
 
     -- Brightness
     awful.key({ }, "XF86MonBrightnessUp", function () os.execute("xbacklight -inc 10") end,
@@ -653,10 +655,13 @@ awful.rules.rules = {
       properties = { tag = awful.util.tagnames[3] } },
 
     { rule = { class = "Nautilus" },
-      properties = { tag = awful.util.tagnames[4] } },
+      properties = { tag = awful.util.tagnames[6] } },
 
     { rule = { class = "Todoist" },
       properties = { tag = awful.util.tagnames[4] } },
+
+    { rule = { class = "obsidian" },
+      properties = { tag = awful.util.tagnames[5] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },

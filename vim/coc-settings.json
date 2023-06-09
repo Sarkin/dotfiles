@@ -38,15 +38,6 @@
                 "lua"
             ]
         },
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": [
-                "go.mod"
-            ],
-            "filetypes": [
-                "go"
-            ]
-        },
         "clojure-lsp": {
             "command": "bash",
             "args": [

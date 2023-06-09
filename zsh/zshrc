@@ -64,10 +64,10 @@ alias agrep='ya grep -m=0 --remote'
 
 
 
-if [[ -z "$SSH_CLIENT" ]]; then
-    # eval `dircolors ~/.dir_colors/dircolors`
-    eval `keychain -q --eval --agents ssh id_rsa`
-fi
+# if [[ -z "$SSH_CLIENT" ]]; then
+    # # eval `dircolors ~/.dir_colors/dircolors`
+    # eval `keychain -q --eval --agents ssh id_rsa`
+# fi
 
 # exports
 export TERM=screen-256color
@@ -82,6 +82,8 @@ source $HOME/venvs/default/bin/activate
 if [ -f '$HOME/yandex-cloud/path.bash.inc' ]; then source '$HOME/yandex-cloud/path.bash.inc'; fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/go/bin"
 
 source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
 autoload -Uz add-zsh-hook
@@ -90,3 +92,6 @@ source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/histdb-interactive.zsh
 bindkey '^r' _histdb-isearch
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+SSH_AGENT_LAUNCHER='skotty'; export SSH_AGENT_LAUNCHER;
+SSH_AUTH_SOCK="/home/kinan-sarmini/.skotty/sock/default.sock"; export SSH_AUTH_SOCK;
