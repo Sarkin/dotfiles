@@ -1,27 +1,7 @@
 " Coc configs
 " bases
-nn <silent> <leader>fb :call CocLocations('ccls','$ccls/inheritance')<cr>
-" derived
-nn <silent> <leader>fd :call CocLocations('ccls','$ccls/inheritance',{'derived':v:true})<cr>
-
-" caller
-nn <silent> <leader>fc :call CocLocations('ccls','$ccls/call')<cr>
-" callee
-nn <silent> <leader>fC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<cr>
-
-" $ccls/member
-" member variables / variables in a namespace
-nn <silent> <leader>fmv :call CocLocations('ccls','$ccls/member')<cr>
-" member functions / functions in a namespace
-nn <silent> <leader>fmf :call CocLocations('ccls','$ccls/member',{'kind':3})<cr>
-" nested classes / types in a namespace
-nn <silent> <leader>fmt :call CocLocations('ccls','$ccls/member',{'kind':2})<cr>
-
-nn <silent> <leader>fv :call CocLocations('ccls','$ccls/vars')<cr>
-nn <silent> <leader>fV :call CocLocations('ccls','$ccls/vars',{'kind':1})<cr>
-
-nn <silent> <leader>fw :call CocLocations('ccls','textDocument/references',{'role':16})<cr>
-nn <silent> <leader>fr :call CocLocations('ccls','textDocument/references',{'role':8})<cr>
+nn <silent> <leader>fw :call CocLocations('clangd','textDocument/references',{})<cr>
+nn <silent> <leader>fr :call CocLocations('clangd','textDocument/references',{})<cr>
 " Remap keys for gotos
 nmap <silent> <leader>gf <Plug>(coc-definition)
 nmap <silent> <leader>gd <Plug>(coc-declaration)
@@ -31,10 +11,6 @@ nmap <silent> <leader>ff <Plug>(coc-references)
 nmap <silent> <leader>gs :call CocAction('showSignatureHelp')<cr>
 nmap <silent> <leader>fa :<C-u>CocList -I -S -R symbols<cr>
 nmap <silent> <leader>fs :call CocAction('documentSymbols')<cr>
-
-nn <silent><C-p> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<cr>
-
-nmap <silent> <leader>cr :call CocNotify('ccls', 'workspace/didChangeConfiguration')<cr>
 
 " Remap for rename current word
 nmap <leader>mv <Plug>(coc-rename)

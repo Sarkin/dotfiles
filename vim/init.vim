@@ -1,16 +1,16 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Git helper
-" Plug 'tpope/virm-fugitive'
+" Plug 'tpope/vim-fugitive'
 
 " Show changed line
 Plug 'airblade/vim-gitgutter'
 
 " File browser
-Plug 'scrooloose/nerdtree'
-
-" Theme
-Plug 'morhetz/gruvbox'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-neo-tree/neo-tree.nvim'
 
 " Session management
 Plug 'tpope/vim-obsession'
@@ -37,29 +37,40 @@ Plug 'junegunn/vim-easy-align'
 " Header switch
 Plug 'derekwyatt/vim-fswitch'
 
+" Color schemes
+Plug 'morhetz/gruvbox'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-
-Plug 'tpope/vim-tbone'
-
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'folke/tokyonight.nvim'
+Plug 'tanvirtin/monokai.nvim'
 
-Plug $HOME . '/arcadia/junk/vvgolubev/vim-archer'
+" Debugging
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
 
+" Utility
 Plug 'ojroques/vim-oscyank', { 'branch': 'main' }
+
+" bufline
+Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
+" Plug 'ryanoasis/vim-devicons' Icons without colours
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
-Plug 'jackguo380/vim-lsp-cxx-highlight'
-Plug 'm-pilia/vim-ccls'
-
-
 Plug 'liuchengxu/vista.vim'
+Plug 'honza/vim-snippets'
 
+" tmux navigate
+Plug 'aserowy/tmux.nvim'
 
 call plug#end()
+
+lua require("init")
 
 filetype on
 filetype plugin on
@@ -71,11 +82,12 @@ syntax on
 set nu
 set rnu
 
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+" augroup numbertoggle
+  " autocmd!
+  " autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  " autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+" augroup END
+set norelativenumber
 
 set incsearch
 set wildignore=*.o,*.obj,*.bak,*.exe,*.swp,*.so,*.zip
@@ -94,14 +106,17 @@ set shellcmdflag=-ic
 " Colorschemes
 
 " colorscheme gruvbox
-" set background=dark
 
 " colorscheme challenger_deep
 
-let g:rehash256=1
-colorscheme molokai
+" colorscheme molokai
+colorscheme tokyonight-storm
+
+" set background=light
+" colorscheme gruvbox
 
 " colorscheme dracula
+" colorscheme monokai
 
 " Indentation and tabulation
 set tabstop=4
@@ -126,7 +141,6 @@ map <c-j> j<c-e>
 map <c-k> k<c-y>
 map <c-l> :bnext<enter>
 map <c-h> :bprevious<enter>
-map <F2> :e#<CR>
 map + <C-W>+
 map - <C-W>-
 
@@ -135,14 +149,6 @@ map <silent> <leader>bc :call common#GoBackToRecentBuffer()<bar>sp<bar>:call com
 
 " Split navigation in different modes
 tnoremap <Esc> <C-\><C-n>
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
 
 " Finally, a trick by Steve Losh for when you forgot to sudo before editing a file that requires root privileges (typically /etc/hosts). This lets you use w!! to do that after you opened the file already:
 cmap w!! w !sudo tee % >/dev/null
@@ -159,13 +165,8 @@ let g:lt_location_list_toggle_map = '<leader>l'
 nnoremap <silent> <Leader>of :FSHere<cr>
 nnoremap <silent> <Leader>os :FSSplitRight<cr>
 
-" NERDTree
-nnoremap <C-n> :NERDTreeToggle<CR>
-map <leader>r :NERDTreeFind<cr>
-
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
@@ -192,9 +193,9 @@ if executable('ag')
 endif 
 
 " vim-airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#fnamecollapse = 0
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline#extensions#tabline#fnamecollapse = 0
 " let g:airline#extensions#obsession#enabled = 1
 let g:airline#extensions#vista#enabled = 1
 
@@ -217,21 +218,9 @@ if dev_env
   execute "source " . $HOME . "/.config/nvim/dev.vim"
 endif
 
-augroup Binary
-  au!
-  au BufReadPre  *.bin let &bin=1
-  au BufReadPost *.bin if &bin | %!xxd
-  au BufReadPost *.bin set ft=xxd | endif
-  au BufWritePre *.bin if &bin | %!xxd -r
-  au BufWritePre *.bin endif
-  au BufWritePost *.bin if &bin | %!xxd
-  au BufWritePost *.bin set nomod | endif
-augroup END
-
 au BufEnter *.I setlocal filetype=cpp
 au BufEnter *.I let b:fswitchdst='C,cpp' | let b:fswitchlocs='./'
 au BufEnter *.C let b:fswitchdst='H,I,hpp,h'
-
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
